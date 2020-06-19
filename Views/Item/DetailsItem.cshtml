@@ -1,0 +1,25 @@
+﻿@model ArtFeverShop.Models.ItemsAndCategories
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row-2">
+    <div class="blue-container">
+        <div class="card">
+            <div class="card-body">
+                <div class="item-info">
+                    <img src="@Model.Item.ImageUrl">
+                    <p>@Html.DisplayFor(modelItem => Model.Item.Name) </p>
+                    <p>Цена: @Html.DisplayFor(modelItem => Model.Item.Price) лв.</p>
+                    <p>@Html.DisplayFor(modelItem => Model.Item.ShortDescription)</p>
+                    <p>@Html.DisplayFor(modelItem => Model.Item.LongDescription)</p>
+                    <p>
+                        В наличност:
+                        @Html.DisplayFor(model => Model.Item.Quantity)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

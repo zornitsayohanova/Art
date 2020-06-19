@@ -1,0 +1,40 @@
+﻿@model ArtFeverShop.Models.ItemsAndCategories
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@Html.AntiForgeryToken()
+    <div class="mirror-background">
+        <p class="name">@Model.Category.CategoryName</p>
+        <div class="category-info">@Model.Category.Description</div>
+        <div class="items-container">
+            @if (Model.AllItems.Count != 0)
+            {
+                <div class="scroller">
+                    @foreach (var item in Model.AllItems)
+                    {
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="item-info">
+                                    <img src=@item.ImageUrl>
+                                    <p>@Html.DisplayFor(modelItem => item.Name)</p>
+                                    <p>Цена: @Html.DisplayFor(modelItem => item.Price) лв.</p>
+                                    <p>
+                                        <a asp-controller="Item" asp-action="EditItem" asp-route-id="@item.ItemId">Редактирай</a> |
+                                        <a asp-controller="Item" asp-action="DetailsItem" asp-route-id="@item.ItemId">Детайли</a> |
+                                        <a asp-controller="Item" asp-action="DeleteItem" asp-route-id="@item.ItemId">Изтрий</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <p>В момента, няма продукти в тази категория.</p>
+            }
+        </div>
+    </div>
+
+

@@ -1,0 +1,45 @@
+﻿@model ArtFeverShop.Models.ItemsAndCategories
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="product-info">
+    <label>Сигурни ли сте, че искате да изтриете продукта?</label>
+    <dl class="row-2">
+        <dt class="col-sm-2">
+            Име
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Кратко описание
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item.ShortDescription)
+        </dd>
+        <dt class="col-sm-2">
+            Дълго описание
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item.LongDescription)
+        </dd>
+        <dt class="col-sm-2">
+            Цена
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item.Price)
+        </dd>
+        <dt class="col-sm-2">
+            URL адрес на снимката
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item.ImageUrl)
+        </dd>
+    </dl>
+    <form asp-action="DeleteItem">
+        <input type="hidden" asp-for="@Model.Item.ItemId" />
+        <input type="submit" value="Изтрий" class="btn btn-danger" /> |
+    </form>
+</div>

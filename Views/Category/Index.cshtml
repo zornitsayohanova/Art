@@ -1,0 +1,28 @@
+﻿@model ArtFeverShop.Models.ItemsAndCategories
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row-3">
+    <div class="blue-container">
+        <a class="new-category" asp-controller="Category" asp-action="AddCategory">Добавете категория</a>
+        <div class="scroller">
+           @foreach (var category in Model.AllCategories)
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <div class="item-info">
+                            <p>@Html.DisplayFor(modelItem => category.CategoryName)</p>
+                            <p>@Html.DisplayFor(modelItem => category.Description) </p>
+                            <p>
+                                <a asp-action="EditCategory" asp-route-id="@category.CategoryId">Редактирай</a> |
+                                <a asp-action="DeleteCategory" asp-route-id="@category.CategoryId">Изтрий</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

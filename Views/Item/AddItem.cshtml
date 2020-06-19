@@ -1,0 +1,56 @@
+﻿@model ArtFeverShop.Models.ItemsAndCategories
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Item" asp-action="AddItem">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Име</label>
+                <input asp-for="Item.Name" class="form-control" />
+                <span asp-validation-for="Item.Name" class="text-danger"></span>
+                @Html.ValidationMessageFor(model => model.Item, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label class="control-label">Кратко описание</label>
+                <input asp-for="Item.ShortDescription" class="form-control" />
+                <span asp-validation-for="Item.ShortDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Дълго описание</label>
+                <input asp-for="Item.LongDescription" class="form-control" />
+                <span asp-validation-for="Item.LongDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Цена</label>
+                <input asp-for="Item.Price" class="form-control" />
+                <span asp-validation-for="Item.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">URL адрес на снимката</label>
+                <input asp-for="Item.ImageUrl" class="form-control" />
+                <span asp-validation-for="Item.ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Име на категорията</label>
+                @Html.DropDownListFor(
+                y=>y.Item.CategoryName,
+                new SelectList( Model.AllCategories.Select(x => new { Value = x.CategoryName, Text = x.CategoryName }),
+                "Value","Text" )) 
+                <span asp-validation-for="Item.CategoryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">В наличност</label>
+                <input asp-for="Item.Quantity" class="form-control" />
+                <span asp-validation-for="Item.Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Добави" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

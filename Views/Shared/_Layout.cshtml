@@ -1,0 +1,72 @@
+﻿@model ArtFeverShop.Models.ItemsAndCategories
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ArtFeverShop</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
+            <ul class="navbar-nav flex-grow-1">
+                <a class="new-one" asp-controller="Category" asp-action="Index">Добавете категория</a>
+                <a class="new-one" asp-controller="Item" asp-action="AddItem">Добавете продукт</a>
+                <a asp-controller="Home" asp-action="Index">Начало</a>
+
+               @if (Model.AllCategories.Count != 0)
+                {
+                   @foreach (var categoryName in Model.AllCategories)
+                    {
+                       @if (categoryName != null)
+                        {
+                           <a class="item" asp-controller="Item" asp-action="Index" asp-route-id="@categoryName.CategoryName"> @categoryName.CategoryName</a>
+                        }
+                    }
+                }
+                else
+                {
+                    <label>Няма продукти</label>
+                }
+            </ul>
+        </div>
+
+        <nav class="navbar navbar-dark ">
+            <span class="navbar-toggler-icon" style="font-size:30px;cursor:pointer" onclick="openNav()"></span>
+            <h1>Art <br> Fever </h1>
+        </nav>
+        @RenderBody()
+    </header>
+
+    <footer class="footer text-muted">
+        <div class="container">
+            &copy; 2020 - ArtFeverShop
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        function openNav()
+        {
+            document.getElementById("mySidenav").style.width = "24%";
+        }
+
+        function closeNav()
+        {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
